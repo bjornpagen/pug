@@ -55,7 +55,7 @@ type stringer interface {
 }
 
 type Component interface {
-	Render(buffer {{.Buf}})
+	Render(w io.Writer)
 }
 
 func WriteAll(a interface{}, escape bool, buffer {{.Buf}}) {
