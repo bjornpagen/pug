@@ -54,6 +54,10 @@ type stringer interface {
 	String() string
 }
 
+type Component interface {
+	Render(buffer {{.Buf}})
+}
+
 func WriteAll(a interface{}, escape bool, buffer {{.Buf}}) {
 	switch v := a.(type) {
 	case string:
@@ -88,6 +92,8 @@ func WriteAll(a interface{}, escape bool, buffer {{.Buf}}) {
 		buffer.WriteString(strconv.FormatFloat(v, 'f', -1, 64))
 	case bool:
 		WriteBool(v, buffer)
+	case Component:
+		v.Render(buffer)
 	case stringer:
 		if escape {
 			WriteEscString(v.String(), buffer)
