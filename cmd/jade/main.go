@@ -8,7 +8,6 @@ import (
 	"go/parser"
 	"go/printer"
 	"go/token"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -102,7 +101,7 @@ func genFile(path, outdir, pkg_name string) {
 		ns_files[fname] = true
 	}
 
-	fl, err := ioutil.ReadFile(fname)
+	fl, err := os.ReadFile(fname)
 	if err != nil {
 		log.Fatalln("cmd/jade: ReadFile(): ", err)
 	}
@@ -134,7 +133,7 @@ func genFile(path, outdir, pkg_name string) {
 		// TODO
 		bb.WriteString("\n\nERROR: parseGoSrc(): ")
 		bb.WriteString(err.Error())
-		ioutil.WriteFile(outPath+"__Error.go", bb.Bytes(), 0644)
+		os.WriteFile(outPath+"__Error.go", bb.Bytes(), 0644)
 		log.Fatalln("cmd/jade: parseGoSrc(): ", err)
 	}
 
@@ -147,7 +146,7 @@ func genFile(path, outdir, pkg_name string) {
 
 	//
 
-	err = ioutil.WriteFile(outPath+".go", fmtOut, 0644)
+	err = os.WriteFile(outPath+".go", fmtOut, 0644)
 	if err != nil {
 		log.Fatalln("cmd/jade: WriteFile(): ", err)
 	}

@@ -6,7 +6,6 @@ require (
 	github.com/Joker/hpp v1.0.0
 	github.com/Joker/jade v1.1.3
 	golang.org/x/tools v0.12.0
-	github.com/valyala/bytebufferpool v1.0.0 //indirect
 )
 
 require (

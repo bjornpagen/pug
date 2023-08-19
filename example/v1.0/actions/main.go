@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/Joker/hpp"
 	"github.com/Joker/jade"
@@ -24,7 +24,7 @@ type Job struct {
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-	buf, err := ioutil.ReadFile("template.jade")
+	buf, err := os.ReadFile("template.jade")
 	if err != nil {
 		fmt.Printf("\nReadFile error: %v", err)
 		return

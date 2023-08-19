@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 
 	"github.com/Joker/hpp"
 	"github.com/Joker/jade"
 )
 
 func main() {
-	dat, err := ioutil.ReadFile("template.jade")
+	dat, err := os.ReadFile("template.jade")
 	if err != nil {
 		fmt.Printf("ReadFile error: %v", err)
 		return
